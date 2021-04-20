@@ -18,6 +18,9 @@ class AnnotationManager extends \Hyperf\Cache\AnnotationManager
 {
     protected function getFormatedKey(string $prefix, array $arguments, ?string $value = null): string
     {
+        //Avoid multiple hyperf projects using one redis on the same server, leading to key conflicts
+        $appName = $this->config->get('app_name', 'hyperf');
+
         if ($value !== null) {
             if ($matches = StringHelper::parse($value)) {
                 foreach ($matches as $search) {
@@ -29,6 +32,7 @@ class AnnotationManager extends \Hyperf\Cache\AnnotationManager
         } else {
             $value = implode(':', $arguments);
         }
-        return $prefix . ':' . md5($value);
+
+        return $prefix . ':' . md5($appName . $value);
     }
 }
