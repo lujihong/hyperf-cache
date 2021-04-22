@@ -30,7 +30,8 @@ class AnnotationManager extends \Hyperf\Cache\AnnotationManager
                 }
             }
         } else {
-            $value = implode(':', $arguments);
+            $val = array_values($arguments);
+            $value = implode(':', $val);
         }
 
         return $prefix . ':' . md5($appName . $value);
