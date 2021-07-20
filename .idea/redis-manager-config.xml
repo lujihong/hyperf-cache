@@ -2,5 +2,7 @@
 <project version="4">
   <component name="PersistentConfig">
     <option name="langCode" value="en" />
+    <option name="baseUrl" value="http://47.115.84.234:8080" />
+    <option name="hadShowPromotion" value="true" />
   </component>
 </project>
